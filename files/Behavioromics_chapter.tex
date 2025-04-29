@@ -1,0 +1,164 @@
+\documentclass[11pt,smallheadings,cleardoublepage=empty,tocflat,numbers=noenddot,twoside,captions=tableheading]{scrbook}
+\usepackage[paperwidth=15.5cm,paperheight=22cm,textwidth=11.5cm,textheight=17.2cm,inner=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage[english]{babel} %% or "american" or "british"
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{lipsum} % blind text
+
+%% Further packages here:
+\usepackage{tabularray} %% recommended for tables
+\UseTblrLibrary{booktabs}
+\usepackage{expex} %% recommended for linguistic examples
+
+%% The following packages should be loaded last:
+\usepackage{microtype}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black,
+  hyperindex=true,
+  linktocpage=true,
+}
+\urlstyle{same}
+%
+\usepackage[style=authoryear-comp,backend=biber,natbib=true]{biblatex}
+%% standard: \textcite{} and \parencite{}, and \textcites{} and \parencites{}
+%% with natbib=true: \citet{} and \citep{}
+\addbibresource{references.bib}
+
+\renewcommand{\bottomfraction}{1.0}
+\renewcommand{\topfraction}{1.0}
+\renewcommand{\textfraction}{0.0}
+\emergencystretch4mm
+\clubpenalty = 10000 \widowpenalty = 10000 \displaywidowpenalty = 10000
+
+\parskip1ex
+\parindent0mm
+
+% alternativ, falls Einzuege statt Abstand gewuenscht
+%% \parskip0ex
+%% \parindent1.5em
+
+% Moeglicher Kopf fuer Artikel
+\newcommand{\chapauthor}[1]{\begin{center}{\large\textsc{#1}}\end{center}\vspace{2ex} \addtocontents{toc}{{\hspace*{1.8mm}\small\textsc{#1}}}}
+% kann gern angepasst
+
+% header und footer
+\newcommand{\runtitle}{}
+\newcommand{\runauthor}{}
+
+\counterwithout{section}{chapter}
+\setcounter{tocdepth}{0}
+
+\usepackage{scrlayer-scrpage}
+\lehead[]{\thepage}
+\cehead[]{}
+\rehead[]{\runauthor}
+\lohead[]{\runtitle}
+\cohead[]{}
+\rohead[]{\thepage}
+\lefoot[]{}
+\cefoot[\thepage]{}
+\refoot[]{}
+\lofoot[]{}
+\cofoot[\thepage]{}
+\rofoot[]{}
+\pagestyle{scrheadings}
+
+
+\begin{document}
+\tableofcontents
+
+\cleardoublepage
+
+
+%%% Authors start here:
+
+\begin{refsection}
+\addchap{Chapter Title}
+\chapauthor{Author First, Author Second}
+\renewcommand{\runtitle}{Running Title}
+\renewcommand{\runauthor}{First, Second}
+
+
+
+Abstract (ca. 200$\pm$ words). \lipsum[1]
+
+
+
+\section{Introduction}
+
+\subsection{Subsection}
+
+\lipsum[3-4]
+
+
+\subsection{Further Subsection}
+
+\lipsum[1]
+
+\begin{table}[htbp]
+  \caption{My Table}
+  \label{tab:my-table}
+  \centering
+  \begin{tblr}{
+      width=0.5\textwidth,
+      colspec={X[l] X[r] X[r]}
+    }
+    \toprule
+    was & $w_1$ & $w_2$\\
+    \midrule
+    asdfdfsda & 1.23 & 145.23\\
+    dfsda & 4.21 & 15.88\\
+    \bottomrule
+  \end{tblr}
+\end{table}
+
+\lipsum[2-3]
+ 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.5\textwidth]{example-image-a}
+  \caption{A}
+  \label{fig:a}
+\end{figure}
+
+
+\section{Second Section}
+
+\lipsum[3-6]
+
+\ldots as argued by \textcite{Birdwhistell:1970} \ldots 
+
+example without parts:
+%
+\ex
+Mary got a little lamb.
+\label{ex:simple}
+\xe 
+
+example with parts:
+%
+\pex \label{ex:parts}
+\a He$_i$ likes him$_j$.
+\a \ljudge{*} He$_i$ likes him$_i$
+\a He$_i$ likes himself$_i$.
+\xe 
+
+\ldots as shown in (\ref{ex:simple}) and (\ref{ex:parts}) \ldots
+
+
+%% References:
+\printbibliography[heading=subbibliography]
+\end{refsection}
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
